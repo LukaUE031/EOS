@@ -20,7 +20,7 @@ printf("4.Izlaz\n");
 
 
 //Citanje vrednosti sa tastera
-void Taster(){
+int Taster(){
 FILE *fp;
 char *str;
 char tval1,tval2,tval3,tval4,cond=0;
@@ -32,13 +32,13 @@ while(1){
 fp = fopen ("/dev/button", "r");
 if(fp==NULL) {
 puts("Problem pri otvaranju /dev/button");
-exit(0);
+return -1;
 }
 str = (char *)malloc(num_of_bytes+1);
 getline(&str, &num_of_bytes, fp);
 if(fclose(fp)){
 puts("Problem pri zatvaranju /dev/button");
-exit(0);
+return -1;
 }
 if (str[5]-48 ==1)
 		cond=1;
@@ -62,7 +62,6 @@ button_new=button_old;
 }	
 sleep(1);	
             }
-return;
 }
 
 //Citanje switch-eva
